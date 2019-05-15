@@ -1,60 +1,58 @@
 package org.mvnsearch.http2;
 
-import com.squareup.okhttp.OkHttpClient;
-import org.junit.Assert;
-import org.junit.Before;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.OkHttpClientHttpRequestFactory;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.client.RestTemplate;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.*;
 import java.security.KeyStore;
+import java.util.Arrays;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Http2DemoApplication.class)
-@WebIntegrationTest("server.port:9443")
 public class Http2DemoApplicationTests {
 
-    @Value("${server.ssl.key-store-password}")
-    private String sslKeyStorePassword;
+    private static String sslKeyStorePassword = "secret";
+    private static OkHttpClient client;
 
-    @Value("${server.ssl.protocol}")
-    private String sslProtocol;
-
-    private RestTemplate restTemplate;
-
-    @Before
-    public void setup() throws Exception {
+    @BeforeClass
+    public static void setup() throws Exception {
         Resource keyStoreFile = new ClassPathResource("keystore.jks");
         KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
         keyStore.load(keyStoreFile.getInputStream(), sslKeyStorePassword.toCharArray());
 
-        TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-        tmf.init(keyStore);
-        SSLContext ctx = SSLContext.getInstance(sslProtocol);
-        ctx.init(null, tmf.getTrustManagers(), null);
+        TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+                TrustManagerFactory.getDefaultAlgorithm());
+        trustManagerFactory.init(keyStore);
+        TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+        if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+            throw new IllegalStateException("Unexpected default trust managers:"
+                    + Arrays.toString(trustManagers));
+        }
+        X509TrustManager trustManager = (X509TrustManager) trustManagers[0];
 
-        OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.setSslSocketFactory(ctx.getSocketFactory());
-        okHttpClient.setHostnameVerifier((s, sslSession) -> true);
-        this.restTemplate = new RestTemplate(new OkHttpClientHttpRequestFactory(okHttpClient));
+        SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(null, new TrustManager[]{trustManager}, null);
+        SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+        client = new OkHttpClient.Builder()
+                .sslSocketFactory(sslSocketFactory, trustManager)
+                .hostnameVerifier((s, sslSession) -> true)
+                .build();
     }
 
 
     @Test
-    public void testHelloEndpoint() {
-        ResponseEntity<String> response = this.restTemplate
-                .getForEntity("https://localhost:9443/", String.class);
-        Assert.assertEquals("Hello World!!!!", response.getBody());
+    public void testHelloEndpoint() throws Exception {
+        Request request = new Request.Builder()
+                .url("https://localhost:8443/")
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            System.out.println(response.body().string());
+        }
     }
 
 }
