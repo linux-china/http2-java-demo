@@ -4,4 +4,5 @@ server:
     key-store: classpath:keystore.jks
     key-store-password: secret
     key-password: password
-    protocol: TLSv1.2
+  http2:
+    enabled: true
