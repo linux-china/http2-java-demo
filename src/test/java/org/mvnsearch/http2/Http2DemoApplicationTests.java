@@ -5,23 +5,21 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 import javax.net.ssl.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.security.KeyStore;
 import java.util.Arrays;
 
 public class Http2DemoApplicationTests {
-
-    private static String sslKeyStorePassword = "secret";
     private static OkHttpClient client;
 
     @BeforeClass
     public static void setup() throws Exception {
-        Resource keyStoreFile = new ClassPathResource("keystore.jks");
-        KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-        keyStore.load(keyStoreFile.getInputStream(), sslKeyStorePassword.toCharArray());
+        File keyStoreFile = new File(System.getProperty("user.home") + "/data/certs/localhost.p12");
+        KeyStore keyStore = KeyStore.getInstance("PKCS12");
+        keyStore.load(new FileInputStream(keyStoreFile), "changeit".toCharArray());
 
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
                 TrustManagerFactory.getDefaultAlgorithm());
