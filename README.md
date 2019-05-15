@@ -4,11 +4,13 @@ HTTP 2.0 Server Demo
 Spring Boot App with HTTP/2 enabled
 
 
-### 使用keytool生成key store文件
+### User mkcert to produce pkcs12 keystore file
 
-keytool -keystore keystore.jks -genkey -alias client
-
+```
+mkcert -pkcs12 localhost
+```
 
 ### Reference
 
 * HTTP 2.0 specification: https://http2.github.io
+* https://github.com/FiloSottile/mkcert
