@@ -1,8 +1,8 @@
 server:
   port: 8443
   ssl:
-    key-store: classpath:keystore.jks
-    key-store-password: secret
-    key-password: password
+    key-store: ${user.home}/data/certs/localhost.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
   http2:
     enabled: true
