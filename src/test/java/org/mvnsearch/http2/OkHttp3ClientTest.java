@@ -3,8 +3,8 @@ package org.mvnsearch.http2;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import javax.net.ssl.*;
 import java.io.File;
@@ -12,10 +12,10 @@ import java.io.FileInputStream;
 import java.security.KeyStore;
 import java.util.Arrays;
 
-public class Http2DemoApplicationTests {
+public class OkHttp3ClientTest {
     private static OkHttpClient client;
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() throws Exception {
         File keyStoreFile = new File(System.getProperty("user.home") + "/data/certs/localhost.p12");
         KeyStore keyStore = KeyStore.getInstance("PKCS12");
