@@ -19,3 +19,4 @@ mkcert -pkcs12 localhost
 * HTTP 2.0 specification: https://http2.github.io
 * mkcert: https://github.com/FiloSottile/mkcert
 * HttpCore 5.0 Examples: https://hc.apache.org/httpcomponents-core-5.0.x/examples.html
+* HTTP/2 in Netty: https://www.baeldung.com/netty-http2
