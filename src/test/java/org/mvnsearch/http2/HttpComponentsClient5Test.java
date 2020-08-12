@@ -25,7 +25,7 @@ import java.util.concurrent.Future;
  * @author linux_china
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class HttpcomponentsClient5Test implements HttpcomponentsClient5BaseTest {
+public class HttpComponentsClient5Test implements HttpcomponentsClient5BaseTest {
     private HttpAsyncRequester requester;
 
     @BeforeAll
