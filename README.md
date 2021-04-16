@@ -14,6 +14,12 @@ Spring Boot App with HTTP/2 enabled
 mkcert -pkcs12 localhost
 ```
 
+### HTTP/2 over TCP (h2c)
+
+All four embedded web containers now support HTTP/2 over TCP (h2c) without any manual customization.  
+To enable h2c, set `server.http2.enabled` is true and leave `server.ssl.enabled` set to false (its default value).
+
+
 ### Reference
 
 * HTTP 2.0 specification: https://http2.github.io
