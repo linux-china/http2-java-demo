@@ -14,9 +14,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.4.1</spring-boot.version>
-        <netty.version>4.1.56.Final</netty.version>
-        <okhttp3.version>4.10.0-RC1</okhttp3.version>
+        <spring-boot.version>2.5.0-RC1</spring-boot.version>
+        <netty.version>4.1.63.Final</netty.version>
+        <okhttp3.version>5.0.0-alpha.2</okhttp3.version>
         <httpcomponents-client5.version>5.0.3</httpcomponents-client5.version>
         <rxjava2.version>2.2.20</rxjava2.version>
     </properties>
@@ -66,7 +66,7 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.18.1</version>
+            <version>3.19.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -112,7 +112,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.7.0</version>
+                <version>5.7.1</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -138,7 +138,7 @@
             <extension>
                 <groupId>kr.motd.maven</groupId>
                 <artifactId>os-maven-plugin</artifactId>
-                <version>1.6.2</version>
+                <version>1.7.0</version>
             </extension>
         </extensions>
         <plugins>
@@ -153,5 +153,18 @@
             </plugin>
         </plugins>
     </build>
-
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
