@@ -1,4 +1,7 @@
 list:
+  keytool -storepass changeit -list -keystore ServerlessPlatform.p12
+
+list-verbose:
   keytool -v -storepass changeit -list -keystore ServerlessPlatform.p12
 
 create:
@@ -18,3 +21,6 @@ generate-csr alias:
 
 pem2p12 domain:
    openssl pkcs12 -export -out {{domain}}.p12 -in {{domain}}.pem -inkey {{domain}}-key.pem  -passin pass:"" -passout pass:changeit
+
+p12ToPem domain:
+   openssl pkcs12 -in {{domain}}.p12 -out {{domain}}.pem -nodes
