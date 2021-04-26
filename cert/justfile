@@ -1,0 +1,17 @@
+list:
+  keytool -v -storepass changeit -list -keystore ServerlessPlatform.p12
+
+create:
+  keytool -genkey -storetype PKCS12 -alias servers -keyalg RSA -keysize 2048 -keystore ServerlessPlatform.p12 -dname "CN=Libing Chen, OU=WebAdmin, O=Serverless Devs, L=Hangzhou, ST=Zhejiang, C=CN"
+
+import domain:
+   keytool -importkeystore -srckeystore {{domain}}.p12 -srcstoretype pkcs12  -destkeystore ServerlessPlatform.p12 -storepass changeit
+
+delete alias:
+   keytool -delete -alias {{alias}} -keystore ServerlessPlatform.p12 -storepass changeit
+
+change_alias domain:
+   keytool -changealias -alias "1" -destalias {{domain}} -keystore {{domain}}.p12
+
+generate-csr alias:
+   keytool -certreq -alias {{alias}} -file ServerlessPlatform.csr -keystore ServerlessPlatform.p12
