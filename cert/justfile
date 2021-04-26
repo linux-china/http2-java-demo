@@ -11,7 +11,10 @@ delete alias:
    keytool -delete -alias {{alias}} -keystore ServerlessPlatform.p12 -storepass changeit
 
 change_alias domain:
-   keytool -changealias -alias "1" -destalias {{domain}} -keystore {{domain}}.p12
+   keytool -storepass changeit -changealias -alias "1" -destalias {{domain}} -keystore {{domain}}.p12
 
 generate-csr alias:
    keytool -certreq -alias {{alias}} -file ServerlessPlatform.csr -keystore ServerlessPlatform.p12
+
+pem2p12 domain:
+   openssl pkcs12 -export -out {{domain}}.p12 -in {{domain}}.pem -inkey {{domain}}-key.pem  -passin pass:"" -passout pass:changeit
