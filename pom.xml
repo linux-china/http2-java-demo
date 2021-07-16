@@ -14,11 +14,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.5.0-RC1</spring-boot.version>
-        <netty.version>4.1.63.Final</netty.version>
+        <spring-boot.version>2.5.2</spring-boot.version>
+        <netty.version>4.1.65.Final</netty.version>
         <okhttp3.version>5.0.0-alpha.2</okhttp3.version>
-        <httpcomponents-client5.version>5.0.3</httpcomponents-client5.version>
-        <rxjava2.version>2.2.20</rxjava2.version>
+        <httpcomponents-client5.version>5.1</httpcomponents-client5.version>
+        <rxjava2.version>2.2.21</rxjava2.version>
     </properties>
 
     <dependencies>
@@ -66,7 +66,7 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.19.0</version>
+            <version>3.20.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -76,12 +76,12 @@
         <dependency>
             <groupId>org.apache.httpcomponents.core5</groupId>
             <artifactId>httpcore5-reactive</artifactId>
-            <version>${httpcomponents-client5.version}</version>
+            <version>5.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents.core5</groupId>
             <artifactId>httpcore5-h2</artifactId>
-            <version>${httpcomponents-client5.version}</version>
+            <version>5.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents.client5</groupId>
@@ -153,18 +153,4 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-        </pluginRepository>
-    </pluginRepositories>
 </project>
