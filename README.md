@@ -19,6 +19,16 @@ mkcert -pkcs12 localhost
 All four embedded web containers now support HTTP/2 over TCP (h2c) without any manual customization.  
 To enable h2c, set `server.http2.enabled` is true and leave `server.ssl.enabled` set to false (its default value).
 
+Caddy Server reverse_proxy configuration:
+
+```
+reverse_proxy {
+    to http://127.0.0.1:2012
+    transport http {
+        versions h2c
+    }
+}
+```
 
 ### Reference
 
