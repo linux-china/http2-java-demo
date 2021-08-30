@@ -4,5 +4,8 @@ nghttp:
 h2c:
    nghttp http://localhost:8443/
 
-testing domain:
-   curl -X GET --location "https://{{domain}}:8443" --resolve '{{domain}}:8443:127.0.0.1'
+curl:
+   curl -v --http2 http://localhost:8443/
+ 
+uds:
+  curl -GET --unix-socket /tmp/test.sock http://localhost/
