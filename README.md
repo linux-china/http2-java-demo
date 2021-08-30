@@ -30,6 +30,49 @@ reverse_proxy {
 }
 ```
 
+### UDS support - Unix Domain Sockets
+
+* Add dependency
+
+```xml
+       <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-transport-native-kqueue</artifactId>
+            <version>${netty.version}</version>
+            <classifier>osx-x86_64</classifier>
+        </dependency>
+```
+
+* Create NettyUdsConfig.java
+
+```java
+import io.netty.channel.unix.DomainSocketAddress;
+import org.springframework.boot.web.embedded.netty.NettyReactiveWebServerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.Collections;
+
+/**
+ * Netty UDS configuration
+ */
+@Configuration
+public class NettyUdsConfig {
+
+    @Bean
+    public NettyReactiveWebServerFactory factory() {
+        NettyReactiveWebServerFactory factory = new NettyReactiveWebServerFactory();
+        factory.setServerCustomizers(Collections.singletonList(httpServer -> httpServer.bindAddress(() -> new DomainSocketAddress("/tmp/test.sock"))));
+        return factory;
+    }
+}
+```
+* Start server and test
+
+```
+curl -GET --unix-socket /tmp/test.sock http://localhost/
+```
+
 ### Reference
 
 * HTTP 2.0 specification: https://http2.github.io
