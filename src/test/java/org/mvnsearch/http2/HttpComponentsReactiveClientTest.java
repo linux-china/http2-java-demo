@@ -1,10 +1,10 @@
 package org.mvnsearch.http2;
 
-import io.reactivex.Flowable;
-import io.reactivex.Notification;
-import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Notification;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.functions.Function;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.Header;
