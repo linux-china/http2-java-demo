@@ -81,3 +81,4 @@ curl -GET --unix-socket /tmp/test.sock http://localhost/
 * HTTP/2 in Netty: https://www.baeldung.com/netty-http2
 * How I can tell alias of the wanted key-entry to SSLSocket before connecting? https://stackoverflow.com/questions/15201251/how-i-can-tell-alias-of-the-wanted-key-entry-to-sslsocket-before-connecting
 * tls demo:  https://github.com/linux-china/tls-demo
+* Spring SSL: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto.webserver.configure-ssl
