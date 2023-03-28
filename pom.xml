@@ -13,12 +13,14 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
-        <spring-boot.version>2.5.4</spring-boot.version>
-        <netty.version>4.1.67.Final</netty.version>
-        <okhttp3.version>5.0.0-alpha.2</okhttp3.version>
-        <httpcomponents-client5.version>5.1</httpcomponents-client5.version>
-        <rxjava2.version>2.2.21</rxjava2.version>
+        <java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <spring-boot.version>3.0.5</spring-boot.version>
+        <netty.version>4.1.90.Final</netty.version>
+        <okhttp3.version>5.0.0-alpha.11</okhttp3.version>
+        <httpcomponents-client5.version>5.2.1</httpcomponents-client5.version>
+        <rxjava3.version>3.1.6</rxjava3.version>
     </properties>
 
     <dependencies>
@@ -35,6 +37,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-tcnative</artifactId>
+            <version>2.0.59.Final</version>
         </dependency>
         <dependency>
             <groupId>io.netty</groupId>
@@ -62,7 +65,7 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.20.2</version>
+            <version>3.24.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -72,12 +75,12 @@
         <dependency>
             <groupId>org.apache.httpcomponents.core5</groupId>
             <artifactId>httpcore5-reactive</artifactId>
-            <version>5.1.1</version>
+            <version>${httpcomponents-client5.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents.core5</groupId>
             <artifactId>httpcore5-h2</artifactId>
-            <version>5.1.1</version>
+            <version>${httpcomponents-client5.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents.client5</groupId>
@@ -90,9 +93,9 @@
             <version>${httpcomponents-client5.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.reactivex.rxjava2</groupId>
+            <groupId>io.reactivex.rxjava3</groupId>
             <artifactId>rxjava</artifactId>
-            <version>${rxjava2.version}</version>
+            <version>${rxjava3.version}</version>
         </dependency>
     </dependencies>
 
@@ -108,7 +111,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.7.2</version>
+                <version>5.9.2</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -139,11 +142,10 @@
         </extensions>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.11.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
                     <parameters>true</parameters>
                 </configuration>
             </plugin>
