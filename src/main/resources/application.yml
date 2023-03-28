@@ -4,6 +4,6 @@ server:
     key-store: ${user.home}/data/certs/localhost.p12
     key-store-password: changeit
     key-store-type: PKCS12
-#    enabled: false
+    enabled: true
   http2:
     enabled: true
