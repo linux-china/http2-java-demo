@@ -16,7 +16,7 @@ mkcert -pkcs12 localhost
 
 ### HTTP/2 over TCP (h2c)
 
-All four embedded web containers now support HTTP/2 over TCP (h2c) without any manual customization.  
+All four embedded web containers now support HTTP/2 over TCP (h2c) without any manual customization.
 To enable h2c, set `server.http2.enabled` is true and leave `server.ssl.enabled` set to false (its default value).
 
 Caddy Server reverse_proxy configuration:
@@ -75,6 +75,7 @@ curl -GET --unix-socket /tmp/test.sock http://localhost/
 
 ### Reference
 
+* Spring Boot SSL: https://docs.spring.io/spring-boot/docs/3.1.0/reference/html/features.html#features.ssl
 * HTTP 2.0 specification: https://http2.github.io
 * mkcert: https://github.com/FiloSottile/mkcert
 * HttpCore 5.0 Examples: https://hc.apache.org/httpcomponents-core-5.0.x/examples.html
