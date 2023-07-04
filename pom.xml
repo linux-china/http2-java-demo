@@ -16,8 +16,8 @@
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <spring-boot.version>3.1.0</spring-boot.version>
-        <netty.version>4.1.92.Final</netty.version>
+        <spring-boot.version>3.1.1</spring-boot.version>
+        <netty.version>4.1.94.Final</netty.version>
         <okhttp3.version>5.0.0-alpha.11</okhttp3.version>
         <httpcomponents-client5.version>5.2.1</httpcomponents-client5.version>
         <rxjava3.version>3.1.6</rxjava3.version>
