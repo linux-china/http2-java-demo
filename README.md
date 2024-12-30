@@ -84,3 +84,4 @@ curl -GET --unix-socket /tmp/test.sock http://localhost/
 * tls demo:  https://github.com/linux-china/tls-demo
 * Spring SSL: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto.webserver.configure-ssl
 * Three Ways to Run Your Java Locally with HTTPS: https://developer.okta.com/blog/2022/01/31/local-https-java
+* Reload SSL Certificates From HashiCorp Vault for Spring Boot: https://www.baeldung.com/spring-boot-hashicorp-valut-reload-ssl-certificates
