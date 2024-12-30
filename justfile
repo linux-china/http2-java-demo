@@ -9,3 +9,6 @@ curl:
 
 uds:
   curl -GET --unix-socket /tmp/test.sock http://localhost/
+
+demo:
+  NODE_TLS_REJECT_UNAUTHORIZED=0 bun run demo.ts
